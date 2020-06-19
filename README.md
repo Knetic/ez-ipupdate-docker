@@ -17,15 +17,6 @@ Example invocation:
 docker run -it --rm --net=host -v '/etc/ez-ipupdate/default.conf:/etc/ez-ipupdate/default.conf' ez-ipupdate
 ```
 
-Example `docker-compose.yml`:
+By default, this will just run the executable. But `ez-ipupdate` may (paradoxically) not discover your _internal_ network's IP address, rather than the public address. 
 
-```yaml
-version: '2'
-services:
-  ez-ipupdate:
-    image: ez-ipupdate
-    container_name: ez-ipupdate
-    network_mode: host
-    volumes:
-      - /etc/ez-ipupdate/default.conf:/etc/ez-ipupdate/default.conf:ro
-```
+If you find yourself with the wrong IP, check `example_ipecho.sh` for a script that uses the `ipecho.net` service to get your actual public IP, and runs this container to update your domain.
